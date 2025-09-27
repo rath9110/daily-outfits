@@ -1,32 +1,34 @@
-Daily Outfit suggester - A one-line clothing tips app to my Telegram bot based on the daily hours I'm outside
+# Daily Outfit Suggester
 
-My problem statement: I always forget to check the weather forecast for the day -> this causes me to dress only on how it looks outside when I wake up 
-(which turns out to be wrong way to estimate the daily forecast)
+**One-line clothing tips to my Telegram bot based on the daily hours I’m outside.**
 
-Limits I put on my project
-- Free to run
-- Must be based on where I'm at for the day -> can't rely on  a hardcoded value
+## Problem
 
-Solution: An automation program on my phone sends my location each morning to a Python app, which then fetches the hourly weather for the area and hours I'm outside. 
-Based on this, a 8B param AI writes a concise clothing suggestion and then DMs me on Telegram with the clothing suggestions.
+I always forget to check the weather forecast for the day → I end up dressing based on what it looks like when I wake up (which apparently is the wrong way to estimate the full-day forecast!).
 
-How it works:
+## Constraints
 
-- Set up an automation program in Iphones's shortcuts that sends my lat and lon each morning to a GitHub gist.
-- Fetch Open-Meteo → filter to my outside hours.
-- Summarize (min/max temp, wind, rain prob/mm).
-- Generate a one-liner using open-source model llama-3.1-8b-instruct based on the weather forecast, a prompt for how to resonate about the clothing
-  and my sensitivity when it comes to wind, rain and cold on a scale 0-10.
-- Send to my phone via a Telegram bot.
+* Free to run
+* Must be based on where I’m at that day (no hardcoded coordinates)
 
+## Solution
 
-Features to add next:
-- Add service that allows me to give feedback each day to the clothing suggestion -> allows me to tweak my cold, rain and wind sensitivity params
-- Allow multiple people to subscribe to customized weather prognosis
-- Move to iPhone app to allow easier onboarding of new people -> allows fetching coordinates directly without automation program,
-  allows direct push notifications instead of Telegram messages, enables program to be run on client side
+An automation on my phone sends my location each morning to a Python app. The app fetches hourly weather for the area and the hours I’m outside. Based on that, an 8B param AI** writes a concise clothing suggestion and DMs me on Telegram.
 
+## How it works
 
-Value I get: Faster mornings, consistent dress decisions, no app-hopping—just one message at the right time.
+* iPhone Shortcuts send current lat/lon each morning to a GitHub Gist
+* Fetch Open-Meteo based on coordinates → filter to my outside hours
+* Summarize the min/max temp, wind, rain prob/mm
+* Generate a one-liner using llama-3.1-8b-instruct, a prompt for how to reason about clothing, and my sensitivity to wind/rain/cold (0–10)
+* Send to my phone via a Telegram bot
 
-What I did: Designed prompt + rules, built clean env-based config, added hour-window logic, wired CI to run daily/hourly, and handled delivery + edge cases.
+## Next
+
+* Feedback loop to tweak my cold/rain/wind sensitivity params
+* Multi-user: allow people to subscribe to customized forecasts
+* iPhone app: simpler onboarding, direct coordinate access (no Shortcut), push notifications, client-side execution
+
+## Value
+
+Faster mornings, consistent dress decisions, no need to check the daily weather and plan outfit based on it → just one message when waking up.
