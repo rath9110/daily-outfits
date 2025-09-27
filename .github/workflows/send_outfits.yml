@@ -3,7 +3,7 @@ name: Send daily outfits (Telegram + CL API)
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "6 5 * * *"
   workflow_dispatch: {}
 
 jobs:

@@ -58,5 +58,3 @@ def outfit_for_day(
     result = response.json()
     outfit = (result.get("result", {}).get("response", "") or "").strip()
     return outfit
-
-print(outfit_for_day(5, 15, 5, 60, 2.0, Prefs(5, 5, 0, "en"), "Alice", 59.3293, 18.0686, "man"))
