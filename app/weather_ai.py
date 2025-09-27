@@ -12,8 +12,8 @@ headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 
 def outfit_for_day(
-    t_min: float, t_max: float, wind_max: float, rain_prob_max: int, rain_mm_total: float,
-    prefs: Prefs, name: str = "User", lat: float, lon: float, gender: str = "gender"
+    t_min, t_max, wind_max, rain_prob_max, rain_mm_total,
+    prefs, lat, lon, name="User", gender="gender"
 ) -> str:
     inputs = [
         {
@@ -34,9 +34,9 @@ def outfit_for_day(
             "role": "user",
             "content": (
                 f"Language: {prefs.language or 'en'}.\n"
-                f"Context: {name or 'User'} in lat {lat:.4f}, lon {lon:.4f} today.\n"
-                f"Weather: min {t_min:.0f}°C, max {t_max:.0f}°C, wind {wind_max:.0f} m/s, "
-                f"rain {rain_prob_max}% ≈ {rain_mm_total:.1f} mm.\n"
+                f"Context: {name or 'User'} in lat {lat}, lon {lon} today.\n"
+                f"Weather: min {t_min}°C, max {t_max}°C, wind {wind_max} m/s, "
+                f"rain {rain_prob_max}% ≈ {rain_mm_total} mm.\n"
                 f"Sensitivity (colder→more layers): cold={prefs.cold_bias}, "
                 f"wind={prefs.wind_tolerance}, rain={prefs.rain_tolerance}.\n"
                 "Return one line only."
@@ -58,5 +58,3 @@ def outfit_for_day(
     result = response.json()
     outfit = (result.get("result", {}).get("response", "") or "").strip()
     return outfit
-
-print(outfit_for_day(5, 15, 5, 60, 2.0, Prefs(5, 5, 0, "en"), "Alice", 59.3293, 18.0686, "man"))
