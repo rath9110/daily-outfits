@@ -13,7 +13,7 @@ headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 def outfit_for_day(
     t_min: float, t_max: float, wind_max: float, rain_prob_max: int, rain_mm_total: float,
-    prefs: Prefs, name: str = "User", lat: float = 0.0, lon: float = 0.0, gender: str = "gender"
+    prefs: Prefs, name: str = "User", lat: float, lon: float, gender: str = "gender"
 ) -> str:
     inputs = [
         {
