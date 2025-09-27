@@ -13,7 +13,7 @@ I always forget to check the weather forecast for the day → I end up dressing 
 
 ## Solution
 
-An automation on my phone sends my location each morning to a Python app. The app fetches hourly weather for the area and the hours I’m outside. Based on that, an 8B param AI** writes a concise clothing suggestion and DMs me on Telegram.
+An automation on my phone sends my location each morning to a Python app. The app fetches hourly weather for the area and the hours I’m outside. Based on that, an 8B param AI writes a concise clothing suggestion and DMs me on Telegram.
 
 ## How it works
 
@@ -32,3 +32,4 @@ An automation on my phone sends my location each morning to a Python app. The ap
 ## Value
 
 Faster mornings, consistent dress decisions, no need to check the daily weather and plan outfit based on it → just one message when waking up.
+
