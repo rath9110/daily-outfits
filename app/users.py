@@ -10,8 +10,6 @@ def load_users(csv_path: str) -> List[dict]:
             users.append({
                 "chat_id": row["chat_id"].strip(),
                 "name": row.get("name", "").strip(),
-                "lat": float(row["lat"]),
-                "lon": float(row["lon"]),
                 "prefs": Prefs(
                     cold_bias=int(row.get("cold_bias", 0) or 0),
                     wind_tolerance=int(row.get("wind_tolerance", 0) or 0),
