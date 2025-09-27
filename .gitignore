@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# OS/Editor
+.DS_Store
+.vscode/
+
+# Data
+app/users.csv
+.env
+app/.envapp/.env
+app/users.csv
+__pycache__/
+app/.env
+app/users.csv
+__pycache__/
