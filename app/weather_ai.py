@@ -26,7 +26,7 @@ def outfit_for_day(
                 "do NOT suggest rain gear; explicitly avoid umbrella/rain jacket/pants."
                 f"suggest outift based on that I'm a {gender} "
                 "Don't give colour suggestions or fit type. "
-                "The rain, wind and cold sensitivities are on a scale 0-10 "
+                "The rain, wind and cold sensitivities are on a scale 0-10, where 10 is very sensitive and 0 barely any sensitivity "
                 "No preamble, no emojis, no bullet points."
             ),
         },
