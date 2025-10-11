@@ -70,16 +70,17 @@ def run():
             lat = coordinates["latitude"]
             lon = coordinates["longitude"]
             prefs = user["prefs"]
+            gender = user["gender"]
 
             wx = fetch_weather(lat, lon)
             t_min, t_max, wind_max, rain_prob_max, rain_mm_total = summarize(wx)
             outfit = outfit_for_day(
-                t_min, t_max, wind_max, rain_prob_max, rain_mm_total, prefs, name, lat, lon
+                t_min, t_max, wind_max, rain_prob_max, rain_mm_total, prefs, name, lat, lon, gender
             )
 
             msg = (
                 f"God morgon{f' {name}' if name else ''}!\n"
-                f"Today you should wear {outfit}\n"
+                f"{outfit}\n"
                 f"Have a good one!"
                 )
             send_telegram(chat_id, msg)

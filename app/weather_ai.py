@@ -12,21 +12,21 @@ headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 
 def outfit_for_day(
-    t_min: float, t_max: float, wind_max: float, rain_prob_max: int, rain_mm_total: float,
-    prefs: Prefs, name: str = "User", lat: float = 0.0, lon: float = 0.0, gender: str = "gender"
+    t_min, t_max, wind_max, rain_prob_max, rain_mm_total,
+    prefs, lat, lon, name="User", gender="gender"
 ) -> str:
     inputs = [
         {
             "role": "system",
             "content": (
-                "You are a concise wardrobe assistant. "
-                "Given today's local weather and user sensitivity, reply with EXACTLY ONE short line: "
+                "You are a concise wardrobe and weather assistant. "
+                "Given today's local weather and user sensitivity, reply with EXACTLY ONE short line for the weather and one for clothing: "
                 "practical outfit layers + a brief note if needed (e.g., umbrella or windproof). "
                 "If rain_prob<30 AND rain_mm<1.0 for the target hours, "
-                "do NOT suggest rain gear; explicitly avoid umbrella/rain jacket/pants."
+                "do NOT suggest rain gear; explicitly avoid umbrella/rain jacket/rain pants."
                 f"suggest outift based on that I'm a {gender} "
                 "Don't give colour suggestions or fit type. "
-                "The rain, wind and cold sensitivities are on a scale 0-10 "
+                "The rain, wind and cold sensitivities are on a scale 0-10, where 10 is very sensitive and 0 barely any sensitivity "
                 "No preamble, no emojis, no bullet points."
             ),
         },
@@ -34,9 +34,9 @@ def outfit_for_day(
             "role": "user",
             "content": (
                 f"Language: {prefs.language or 'en'}.\n"
-                f"Context: {name or 'User'} in lat {lat:.4f}, lon {lon:.4f} today.\n"
-                f"Weather: min {t_min:.0f}°C, max {t_max:.0f}°C, wind {wind_max:.0f} m/s, "
-                f"rain {rain_prob_max}% ≈ {rain_mm_total:.1f} mm.\n"
+                f"Context: {name or 'User'} in lat {lat}, lon {lon} today.\n"
+                f"Weather: min {t_min}°C, max {t_max}°C, wind {wind_max} m/s, "
+                f"rain {rain_prob_max}% ≈ {rain_mm_total} mm.\n"
                 f"Sensitivity (colder→more layers): cold={prefs.cold_bias}, "
                 f"wind={prefs.wind_tolerance}, rain={prefs.rain_tolerance}.\n"
                 "Return one line only."
